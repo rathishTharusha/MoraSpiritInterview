@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Task</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="text-center">Interview Task</h1>
+            <h4 class="text-center">Hello MoraSpirit, I'm Tharusha Perera</h4>
+        </header>
+        <form action="" id="form">
+            <div class="form-group">
+                <label for="name">What is your name :</label>
+                <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="color">Pick your favourite color :</label>
+                <select name="color" id="color" class="form-control">
+                    <option value selected disabled>--- Select a color ---</option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Submit</button>
+            </div>
+        </form>
+        <div class="msg-box" id="msg-box">
+            <i class="fa-solid fa-circle-xmark close-btn" id="close-btn"></i>
+            <h3 class="msg" id="msg">Hello, name!</h3>
+        </div>
+    </div>
+
+    <script>
+        //selecting the form from webpage
+        let form = document.getElementById("form");
+
+        //add a function to happen when submit button is clicked  
+        form.addEventListener("submit", (e) => {
+            //prevent page from reloading
+            e.preventDefault();
+
+            //getting values from user inputs
+            let name = document.getElementById("name").value;
+            let color = document.getElementById("color").value;
+            
+            //add default color as black if user didn't select any color
+            if(color == ''){
+                color = 'black'
+            }
+
+            //make sure name is taken coorectly and execute function otherwise raising an alert message
+            if(name == ''){
+                alert("Something went wrong please try again.");
+            }
+            else{
+                //selecting message box
+                let msgBox = document.getElementById('msg-box');
+                let msg = document.getElementById('msg');
+                
+                //changing the name
+                msg.innerHTML= "Hello, "+name+"!";
+
+                //changing the color
+                if(color == 'red'){
+                    msg.style.color = "#ff3030";
+                } else if (color == 'green'){
+                    msg.style.color = "#41B06E";
+                } else if (color == 'blue'){
+                    msg.style.color = "#171ac9";
+                } else{
+                    msg.style.color = "#141E46";
+                };
+                
+                //make message box visible
+                msgBox.style.visibility = "visible";
+            };
+
+            //clearing th euser input fields after getting inpput values
+            document.getElementById("name").value = "";
+            document.getElementById("color").value = "";
+        })
+
+        //adding close button to message box
+        let closeBtn = document.getElementById("close-btn");
+        //make it visibly hidden is close button is clicked
+        closeBtn.addEventListener("click", (e) => {
+            let msgBox = document.getElementById('msg-box');
+            msgBox.style.visibility = "hidden";
+        })
+
+    </script>
+    <script src="https://kit.fontawesome.com/6c2920b828.js" crossorigin="anonymous"></script>
+</body>
+</html>
